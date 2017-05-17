@@ -23,23 +23,7 @@
     </servlet-mapping>
 
     <!--
-    Commands for forcing HTTPS redirect:
-    Note: arguments require two '-' (hyphens)
-
-    asadmin create-protocol -securityenabled=false http-redirect
-
-    asadmin create-http-redirect -redirect-port 8181 -secure-redirect true http-redirect
-
-    asadmin create-protocol -securityenabled=false pu-protocol
-
-    asadmin create-protocol-filter -protocol http-redirect -classname org.glassfish.grizzly.config.portunif.HttpRedirectFilter redirect-filter
-
-    asadmin create-protocol-finder -protocol pu-protocol -targetprotocol http-listener-2 -classname org.glassfish.grizzly.config.portunif.HttpProtocolFinder http-finder
-
-    asadmin create-protocol-finder -protocol pu-protocol -targetprotocol http-redirect -classname org.glassfish.grizzly.config.portunif.HttpProtocolFinder http-redirect
-
-    asadmin set configs.config.server-config.network-config.network-listeners.network-listener.http-listener-1.protocol=pu-protocol
-
+    HTTPS redirect: http://www.serveridol.com/2016/11/18/how-to-delete-the-pu-protocol-from-glassfish-3/
     -->
 
 </web-app>

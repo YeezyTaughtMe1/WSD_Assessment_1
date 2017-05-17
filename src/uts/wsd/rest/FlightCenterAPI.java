@@ -3,6 +3,7 @@ package uts.wsd.rest;
 import uts.wsd.session.SessionContext;
 import uts.wsd.session.user.Customer;
 import uts.wsd.session.user.User;
+import uts.wsd.session.user.booking.Booking;
 import uts.wsd.util.ResponseWrapper;
 
 import javax.servlet.ServletContext;
@@ -12,6 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static uts.wsd.session.SessionContext.contextualise;
@@ -34,11 +36,19 @@ public final class FlightCenterAPI {
 	@Context
 	private ServletContext context;
 
-	@GET
-	@Path("/")
-	@Produces(MediaType.TEXT_HTML)
-	public String index() {
-		return "<html><head><title>Hello</title></head><body><h1>Hello!</h1></body></html>";
+	@POST
+	@Path("flights")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_XML)
+	public List<Booking> bookings(@Context HttpServletRequest request,
+							  @FormParam("username") String username,
+							  @FormParam("status") Boolean available,
+							  @FormParam("limit") Integer limit,
+							  @FormParam("numberofcustomers") Integer customers) {
+
+		//TODO
+
+		return Arrays.asList(null, null);
 	}
 
 	@GET
