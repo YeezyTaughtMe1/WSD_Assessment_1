@@ -6,6 +6,12 @@
       <xsd:import namespace="http://soap.wsd.uts/" schemaLocation="FlightCenterAPIPortType_schema1.xsd"/>
     </xsd:schema>
   </types>
+  <message name="logout">
+    <part name="parameters" element="tns:logout"/>
+  </message>
+  <message name="logoutResponse">
+    <part name="parameters" element="tns:logoutResponse"/>
+  </message>
   <message name="hello">
     <part name="parameters" element="tns:hello"/>
   </message>
@@ -13,9 +19,13 @@
     <part name="parameters" element="tns:helloResponse"/>
   </message>
   <portType name="FlightCenterAPI">
+    <operation name="logout">
+      <input ns1:Action="http://soap.wsd.uts/FlightCenterAPI/logoutRequest" message="tns:logout" xmlns:ns1="http://www.w3.org/2007/05/addressing/metadata"/>
+      <output ns2:Action="http://soap.wsd.uts/FlightCenterAPI/logoutResponse" message="tns:logoutResponse" xmlns:ns2="http://www.w3.org/2007/05/addressing/metadata"/>
+    </operation>
     <operation name="hello">
-      <input ns1:Action="http://soap.wsd.uts/FlightCenterAPI/helloRequest" message="tns:hello" xmlns:ns1="http://www.w3.org/2007/05/addressing/metadata"/>
-      <output ns2:Action="http://soap.wsd.uts/FlightCenterAPI/helloResponse" message="tns:helloResponse" xmlns:ns2="http://www.w3.org/2007/05/addressing/metadata"/>
+      <input ns3:Action="http://soap.wsd.uts/FlightCenterAPI/helloRequest" message="tns:hello" xmlns:ns3="http://www.w3.org/2007/05/addressing/metadata"/>
+      <output ns4:Action="http://soap.wsd.uts/FlightCenterAPI/helloResponse" message="tns:helloResponse" xmlns:ns4="http://www.w3.org/2007/05/addressing/metadata"/>
     </operation>
   </portType>
 </definitions>

@@ -22,13 +22,16 @@ public final class ResponseWrapper {
 
 	}
 
-	private final Response response;
-	private final String[] messages;
+	private Response response;
+	private String[] messages;
 
 	private ResponseWrapper(Response response, String... messages) {
 		this.response = response;
 		this.messages = messages;
 	}
+
+	//needed for SOAP...
+	public ResponseWrapper() {}
 
 	private static ResponseWrapper response(Response response, String... array) {
 		return new ResponseWrapper(response, array);

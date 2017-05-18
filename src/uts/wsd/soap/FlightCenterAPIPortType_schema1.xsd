@@ -5,6 +5,10 @@
 
   <xs:element name="helloResponse" type="tns:helloResponse"/>
 
+  <xs:element name="logout" type="tns:logout"/>
+
+  <xs:element name="logoutResponse" type="tns:logoutResponse"/>
+
   <xs:complexType name="hello">
     <xs:sequence/>
   </xs:complexType>
@@ -14,5 +18,30 @@
       <xs:element name="return" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
+
+  <xs:complexType name="logout">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="logoutResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:responseWrapper" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="responseWrapper" final="extension restriction">
+    <xs:sequence>
+      <xs:element name="messages" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="response" type="tns:response" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="response">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESS"/>
+      <xs:enumeration value="EXCEPTION"/>
+      <xs:enumeration value="FAILURE"/>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
 
