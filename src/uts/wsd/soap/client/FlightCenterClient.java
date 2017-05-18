@@ -9,15 +9,17 @@ import javax.xml.ws.BindingProvider;
  */
 public class FlightCenterClient {
 
-  public static void main(String[] argv) {
-    FlightCenterAPI api = new FlightCenterAPI_Service().getFlightCenterAPI();
-    ((BindingProvider) api).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, true);
+	public static void main(String[] argv) {
+		FlightCenterAPI api = new FlightCenterAPI_Service().getFlightCenterAPI();
+		((BindingProvider) api).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, true);
 
-    ResponseWrapper logout = api.logout();
+		print(api.logout());
 
-    System.out.println(logout.getResponse().value());
-    logout.getMessages().forEach(System.out::println);
+	}
 
-  }
+	private static void print(ResponseWrapper response) {
+		System.out.println(response.getResponse().value());
+		response.getMessages().forEach(System.out::println);
+	}
 
 }
