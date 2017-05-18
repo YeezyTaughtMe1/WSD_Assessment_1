@@ -10,8 +10,14 @@ import javax.xml.ws.BindingProvider;
 public class FlightCenterClient {
 
 	public static void main(String[] argv) {
-		FlightCenterAPI api = new FlightCenterAPI_Service().getFlightCenterAPI();
+		FlightCenterAPI api = new FlightCenterService().getFlightCenterAPIPort();
 		((BindingProvider) api).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, true);
+
+		print(api.logout());
+
+		print(api.login("hello", "world"));
+
+		print(api.logout());
 
 		print(api.logout());
 
@@ -21,5 +27,4 @@ public class FlightCenterClient {
 		System.out.println(response.getResponse().value());
 		response.getMessages().forEach(System.out::println);
 	}
-
 }

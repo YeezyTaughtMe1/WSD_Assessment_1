@@ -24,6 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _Login_QNAME = new QName("http://soap.wsd.uts/", "login");
+    private final static QName _LoginResponse_QNAME = new QName("http://soap.wsd.uts/", "loginResponse");
     private final static QName _LogoutResponse_QNAME = new QName("http://soap.wsd.uts/", "logoutResponse");
     private final static QName _Logout_QNAME = new QName("http://soap.wsd.uts/", "logout");
 
@@ -43,6 +45,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link LoginResponse }
+     * 
+     */
+    public LoginResponse createLoginResponse() {
+        return new LoginResponse();
+    }
+
+    /**
      * Create an instance of {@link LogoutResponse }
      * 
      */
@@ -51,11 +61,37 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Login }
+     * 
+     */
+    public Login createLogin() {
+        return new Login();
+    }
+
+    /**
      * Create an instance of {@link ResponseWrapper }
      * 
      */
     public ResponseWrapper createResponseWrapper() {
         return new ResponseWrapper();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Login }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.wsd.uts/", name = "login")
+    public JAXBElement<Login> createLogin(Login value) {
+        return new JAXBElement<Login>(_Login_QNAME, Login.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link LoginResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.wsd.uts/", name = "loginResponse")
+    public JAXBElement<LoginResponse> createLoginResponse(LoginResponse value) {
+        return new JAXBElement<LoginResponse>(_LoginResponse_QNAME, LoginResponse.class, null, value);
     }
 
     /**

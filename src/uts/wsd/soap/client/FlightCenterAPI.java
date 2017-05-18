@@ -2,6 +2,7 @@
 package uts.wsd.soap.client;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -21,6 +22,24 @@ import javax.xml.ws.RequestWrapper;
 })
 public interface FlightCenterAPI {
 
+
+    /**
+     * 
+     * @param password
+     * @param email
+     * @return
+     *     returns uts.wsd.soap.client.ResponseWrapper
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "login", targetNamespace = "http://soap.wsd.uts/", className = "uts.wsd.soap.client.Login")
+    @javax.xml.ws.ResponseWrapper(localName = "loginResponse", targetNamespace = "http://soap.wsd.uts/", className = "uts.wsd.soap.client.LoginResponse")
+    @Action(input = "http://soap.wsd.uts/FlightCenterAPI/loginRequest", output = "http://soap.wsd.uts/FlightCenterAPI/loginResponse")
+    public uts.wsd.soap.client.ResponseWrapper login(
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "password", targetNamespace = "")
+        String password);
 
     /**
      * 
