@@ -1,8 +1,12 @@
-package uts.wsd.session.user;
+package uts.wsd.app.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import uts.wsd.app.product.Booking;
+import uts.wsd.app.user.impl.Administrator;
+import uts.wsd.app.user.impl.Customer;
+import uts.wsd.app.user.impl.Viewer;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -29,6 +33,14 @@ public interface User {
 
 	default boolean isAdministrator() {
 		return this instanceof Administrator;
+	}
+
+	default Booking<User> getBooking() {
+		return null;
+	}
+
+	default boolean hasBooking() {
+		return getBooking() != null;
 	}
 
 	@Getter

@@ -1,9 +1,9 @@
 package uts.wsd.rest;
 
-import uts.wsd.session.SessionContext;
-import uts.wsd.session.user.Customer;
-import uts.wsd.session.user.User;
-import uts.wsd.session.user.booking.Booking;
+import uts.wsd.app.user.session.SessionContext;
+import uts.wsd.app.user.impl.Customer;
+import uts.wsd.app.user.User;
+import uts.wsd.app.product.Booking;
 import uts.wsd.util.ResponseWrapper;
 
 import javax.servlet.ServletContext;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static uts.wsd.session.SessionContext.contextualise;
+import static uts.wsd.app.user.session.SessionContext.contextualise;
 
 /**
  * @author Harrison, Alias: Hc747, Contact: harrisoncole05@gmail.com

@@ -1,7 +1,8 @@
-package uts.wsd.session.user;
+package uts.wsd.app.user.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
+import uts.wsd.app.user.User;
 
 /**
  * @author Harrison, Alias: Hc747, Contact: harrisoncole05@gmail.com

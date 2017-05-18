@@ -1,8 +1,9 @@
-package uts.wsd.session.user;
+package uts.wsd.app.user.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uts.wsd.app.user.User;
 
 import java.io.Serializable;
 
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public final class Administrator implements User, Serializable {
+public final class Customer implements User, Serializable {
 
 	private Credentials credentials;
 

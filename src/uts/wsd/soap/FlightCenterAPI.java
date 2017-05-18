@@ -1,14 +1,16 @@
 package uts.wsd.soap;
 
-import uts.wsd.session.SessionContext;
-import uts.wsd.session.user.Customer;
-import uts.wsd.session.user.User;
+import uts.wsd.app.FlightCenterApp;
+import uts.wsd.app.user.session.SessionContext;
+import uts.wsd.app.user.impl.Customer;
+import uts.wsd.app.user.User;
 import uts.wsd.util.ResponseWrapper;
 
 import javax.annotation.Resource;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceContext;
@@ -132,14 +134,32 @@ public class FlightCenterAPI {
 		return ResponseWrapper.success(messages);
 	}
 
-
-
 	private HttpSession session() {
 		MessageContext handler = context.getMessageContext();
 		HttpSession session = ((HttpServletRequest) handler.get(MessageContext.SERVLET_REQUEST)).getSession();
 		if (session == null)
 			throw new WebServiceException("No HTTP session found.");
 		return session;
+	}
+
+	private FlightCenterApp app() {
+
+		ServletContext application = (ServletContext) context.getMessageContext().get(MessageContext.SERVLET_CONTEXT);
+
+		boolean initiated = application.getAttribute(FlightCenterApp.ATTRIBUTE_KEY) != null;
+
+		if (!initiated) {
+			synchronized ((ServletContext) context.getMessageContext().get(MessageContext.SERVLET_CONTEXT)) {
+				application = (ServletContext) context.getMessageContext().get(MessageContext.SERVLET_CONTEXT);
+				initiated = application.getAttribute(FlightCenterApp.ATTRIBUTE_KEY) != null;
+				if (!initiated) {
+					FlightCenterApp app = new FlightCenterApp();
+					application.setAttribute(FlightCenterApp.ATTRIBUTE_KEY, app);
+				}
+			}
+		}
+
+		return (FlightCenterApp) application.getAttribute(FlightCenterApp.ATTRIBUTE_KEY);
 	}
 
 }

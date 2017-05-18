@@ -1,9 +1,9 @@
-package uts.wsd.session;
+package uts.wsd.app.user.session;
 
 import lombok.Getter;
 import lombok.Setter;
-import uts.wsd.session.user.User;
-import uts.wsd.session.user.Viewer;
+import uts.wsd.app.user.User;
+import uts.wsd.app.user.impl.Viewer;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
