@@ -3,6 +3,7 @@ package uts.wsd.util;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-public final class ResponseWrapper {
+public final class ResponseWrapper<P> {
 
 	public enum Response {
 
@@ -23,9 +24,9 @@ public final class ResponseWrapper {
 	}
 
 	private Response response;
-	private String[] messages;
+	private List<P> messages;
 
-	private ResponseWrapper(Response response, String... messages) {
+	private ResponseWrapper(Response response, List<P> messages) {
 		this.response = response;
 		this.messages = messages;
 	}
@@ -33,36 +34,36 @@ public final class ResponseWrapper {
 	//needed for SOAP...
 	public ResponseWrapper() {}
 
-	private static ResponseWrapper response(Response response, String... array) {
-		return new ResponseWrapper(response, array);
+	private static <T> ResponseWrapper<T> response(Response response, T... array) {
+		return new ResponseWrapper<>(response, Arrays.asList(array));
 	}
 
 	public static ResponseWrapper success() {
 		return response(Response.SUCCESS);
 	}
 
-	public static ResponseWrapper success(String... messages) {
+	public static <T> ResponseWrapper<T> success(T... messages) {
 		return response(Response.SUCCESS, messages);
 	}
 
-	public static ResponseWrapper success(List<String> messages) {
-		return response(Response.SUCCESS, messages.toArray(new String[messages.size()]));
+	public static <T> ResponseWrapper<T> success(List<T> messages) {
+		return new ResponseWrapper<>(Response.SUCCESS, messages);
 	}
 
-	public static ResponseWrapper exception(String... exceptions) {
+	public static <T> ResponseWrapper<T> exception(T... exceptions) {
 		return response(Response.EXCEPTION, exceptions);
 	}
 
-	public static ResponseWrapper exception(List<String> exceptions) {
-		return response(Response.EXCEPTION, exceptions.toArray(new String[exceptions.size()]));
+	public static <T> ResponseWrapper<T> exception(List<T> exceptions) {
+		return new ResponseWrapper<>(Response.EXCEPTION, exceptions);
 	}
 
-	public static ResponseWrapper failure(String... errors) {
+	public static <T> ResponseWrapper<T> failure(T... errors) {
 		return response(Response.FAILURE, errors);
 	}
 
-	public static ResponseWrapper failure(List<String> errors) {
-		return response(Response.FAILURE, errors.toArray(new String[errors.size()]));
+	public static <T> ResponseWrapper<T> failure(List<T> errors) {
+		return new ResponseWrapper<>(Response.FAILURE, errors);
 	}
 
 }
