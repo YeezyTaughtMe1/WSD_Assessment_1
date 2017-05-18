@@ -1,17 +1,15 @@
 package uts.wsd.session.user.booking;
 
-import uts.wsd.session.user.User;
-
 /**
  * @author Harrison, Alias: Hc747, Contact: harrisoncole05@gmail.com
  * @version 1.0
  * @since 17/5/17
  */
-public interface Booking {
+public interface Booking<U, P> {
 
-	void reserve(User user) throws BookingException;
+	void reserve(U user, P product) throws BookingException;
 
-	void unreserve(User user) throws BookingException;
+	void release(U user, P product) throws BookingException;
 
 	String identifier();
 
