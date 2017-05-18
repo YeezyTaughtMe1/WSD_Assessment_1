@@ -1,6 +1,8 @@
 package uts.wsd.soap;
 
 import uts.wsd.session.SessionContext;
+import uts.wsd.session.user.Customer;
+import uts.wsd.session.user.User;
 import uts.wsd.util.ResponseWrapper;
 
 import javax.annotation.Resource;
@@ -23,6 +25,11 @@ import java.util.List;
 @WebService(serviceName = "soap/api")
 public class FlightCenterAPI {
 
+	//TODO refactoring
+	//TODO modularisation of methods / code
+	//TODO security (CSRF, XSS, sanitisation, validation)
+	//TODO rate limiting
+
 	private static final String ERR_LOGGED_IN = "You can't be perform that action whilst logged in.";
 	private static final String ERR_LOGGED_OUT = "You need to be logged in to perform that action.";
 
@@ -30,7 +37,7 @@ public class FlightCenterAPI {
 	private WebServiceContext context;
 
 	@WebMethod(operationName = "logout")
-	public ResponseWrapper logout() {
+	public ResponseWrapper<String> logout() {
 		HttpSession session = session();
 		SessionContext context = SessionContext.contextualise(session);
 
@@ -40,15 +47,15 @@ public class FlightCenterAPI {
 	}
 
 	@WebMethod(operationName = "login")
-	public ResponseWrapper login(@WebParam(name = "email") String email,
-								 @WebParam(name = "password") String password) {
+	public ResponseWrapper<String> login(@WebParam(name = "email") String email,
+										 @WebParam(name = "password") String password) {
 
 		SessionContext context = SessionContext.contextualise(session());
 
 		if (context.getUser().isAuthenticated())
 			return ResponseWrapper.failure(ERR_LOGGED_IN);
 
-		final List<String> messages = new ArrayList<>();
+		List<String> messages = new ArrayList<>();
 
 		//TODO
 		//properly sanitise and validate all parameters
@@ -68,8 +75,64 @@ public class FlightCenterAPI {
 		//if the above does not fail i.e, user != null
 		//update the context's user object
 
-		return ResponseWrapper.success();//TODO welcome, username
+		//messages.add(Welcome user.getCredentials().getName()
+
+		return ResponseWrapper.success(messages);
 	}
+
+	@WebMethod(operationName = "register")
+	public ResponseWrapper<String> register(@WebParam(name = "name") String name,
+											@WebParam(name = "password") String password,
+											@WebParam(name = "email") String email,
+											@WebParam(name = "birthday") String birthday) {
+
+		SessionContext context = SessionContext.contextualise(session());
+
+		//TODO
+		//there are two use cases for this method
+		//1). a non-registered user attempting to register
+		//2). administrative action -> register
+
+		if (context.getUser().isAuthenticated() && !context.getUser().isAdministrator())
+			return ResponseWrapper.failure(ERR_LOGGED_IN);
+
+		List<String> messages = new ArrayList<>();
+
+		//TODO
+		//properly sanitise and validate all parameters
+		if (name == null || name.isEmpty())//TODO inadequate
+			messages.add("You must provide a valid name.");
+
+		if (password == null || password.isEmpty())//TODO inadequate
+			messages.add("You must provide a valid password.");
+
+		if (email == null || email.isEmpty())//TODO inadequate
+			messages.add("You must provide a valid email address.");
+
+		if (birthday == null || birthday.isEmpty())//TODO inadequate
+			messages.add("You must provide a date of birth.");
+
+		if (!messages.isEmpty())
+			return ResponseWrapper.failure(messages);
+
+		//TODO
+		//ensure no user with the same username already exists
+
+		//TODO
+		//if the above does not fail i.e, user == null
+		//store the user within the database (or file)
+		User user = new Customer(new User.Credentials(name, password, email, birthday));
+
+		if (context.getUser().isAdministrator())
+			messages.add(String.format("Successfully registered %s with username \"%s\" and password \"%s\".", user.getCredentials().getUsername(), user.getCredentials().getEmail(), user.getCredentials().getPassword()));
+		else {
+			context.setUser(user);
+			messages.add(String.format("Welcome, %s.", user.getCredentials().getUsername()));
+		}
+		return ResponseWrapper.success(messages);
+	}
+
+
 
 	private HttpSession session() {
 		MessageContext handler = context.getMessageContext();

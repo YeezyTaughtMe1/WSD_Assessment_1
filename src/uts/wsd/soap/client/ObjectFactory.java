@@ -25,6 +25,8 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Login_QNAME = new QName("http://soap.wsd.uts/", "login");
+    private final static QName _Register_QNAME = new QName("http://soap.wsd.uts/", "register");
+    private final static QName _RegisterResponse_QNAME = new QName("http://soap.wsd.uts/", "registerResponse");
     private final static QName _LoginResponse_QNAME = new QName("http://soap.wsd.uts/", "loginResponse");
     private final static QName _LogoutResponse_QNAME = new QName("http://soap.wsd.uts/", "logoutResponse");
     private final static QName _Logout_QNAME = new QName("http://soap.wsd.uts/", "logout");
@@ -61,11 +63,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RegisterResponse }
+     * 
+     */
+    public RegisterResponse createRegisterResponse() {
+        return new RegisterResponse();
+    }
+
+    /**
      * Create an instance of {@link Login }
      * 
      */
     public Login createLogin() {
         return new Login();
+    }
+
+    /**
+     * Create an instance of {@link Register }
+     * 
+     */
+    public Register createRegister() {
+        return new Register();
     }
 
     /**
@@ -83,6 +101,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.wsd.uts/", name = "login")
     public JAXBElement<Login> createLogin(Login value) {
         return new JAXBElement<Login>(_Login_QNAME, Login.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Register }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.wsd.uts/", name = "register")
+    public JAXBElement<Register> createRegister(Register value) {
+        return new JAXBElement<Register>(_Register_QNAME, Register.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RegisterResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.wsd.uts/", name = "registerResponse")
+    public JAXBElement<RegisterResponse> createRegisterResponse(RegisterResponse value) {
+        return new JAXBElement<RegisterResponse>(_RegisterResponse_QNAME, RegisterResponse.class, null, value);
     }
 
     /**

@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="messages" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="messages" type="{http://www.w3.org/2001/XMLSchema}anyType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="response" type="{http://soap.wsd.uts/}response" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 public class ResponseWrapper {
 
     @XmlElement(nillable = true)
-    protected List<String> messages;
+    protected List<Object> messages;
     protected Response response;
 
     /**
@@ -58,13 +58,13 @@ public class ResponseWrapper {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
+     * {@link Object }
      * 
      * 
      */
-    public List<String> getMessages() {
+    public List<Object> getMessages() {
         if (messages == null) {
-            messages = new ArrayList<String>();
+            messages = new ArrayList<Object>();
         }
         return this.messages;
     }

@@ -25,6 +25,42 @@ public interface FlightCenterAPI {
 
     /**
      * 
+     * @param birthday
+     * @param password
+     * @param name
+     * @param email
+     * @return
+     *     returns uts.wsd.soap.client.ResponseWrapper
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "register", targetNamespace = "http://soap.wsd.uts/", className = "uts.wsd.soap.client.Register")
+    @javax.xml.ws.ResponseWrapper(localName = "registerResponse", targetNamespace = "http://soap.wsd.uts/", className = "uts.wsd.soap.client.RegisterResponse")
+    @Action(input = "http://soap.wsd.uts/FlightCenterAPI/registerRequest", output = "http://soap.wsd.uts/FlightCenterAPI/registerResponse")
+    public uts.wsd.soap.client.ResponseWrapper register(
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "password", targetNamespace = "")
+        String password,
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "birthday", targetNamespace = "")
+        String birthday);
+
+    /**
+     * 
+     * @return
+     *     returns uts.wsd.soap.client.ResponseWrapper
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "logout", targetNamespace = "http://soap.wsd.uts/", className = "uts.wsd.soap.client.Logout")
+    @javax.xml.ws.ResponseWrapper(localName = "logoutResponse", targetNamespace = "http://soap.wsd.uts/", className = "uts.wsd.soap.client.LogoutResponse")
+    @Action(input = "http://soap.wsd.uts/FlightCenterAPI/logoutRequest", output = "http://soap.wsd.uts/FlightCenterAPI/logoutResponse")
+    public uts.wsd.soap.client.ResponseWrapper logout();
+
+    /**
+     * 
      * @param password
      * @param email
      * @return
@@ -40,17 +76,5 @@ public interface FlightCenterAPI {
         String email,
         @WebParam(name = "password", targetNamespace = "")
         String password);
-
-    /**
-     * 
-     * @return
-     *     returns uts.wsd.soap.client.ResponseWrapper
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "logout", targetNamespace = "http://soap.wsd.uts/", className = "uts.wsd.soap.client.Logout")
-    @javax.xml.ws.ResponseWrapper(localName = "logoutResponse", targetNamespace = "http://soap.wsd.uts/", className = "uts.wsd.soap.client.LogoutResponse")
-    @Action(input = "http://soap.wsd.uts/FlightCenterAPI/logoutRequest", output = "http://soap.wsd.uts/FlightCenterAPI/logoutResponse")
-    public uts.wsd.soap.client.ResponseWrapper logout();
 
 }

@@ -9,6 +9,32 @@
 
   <xs:element name="logoutResponse" type="tns:logoutResponse"/>
 
+  <xs:element name="register" type="tns:register"/>
+
+  <xs:element name="registerResponse" type="tns:registerResponse"/>
+
+  <xs:complexType name="register">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="birthday" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:responseWrapper" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="responseWrapper" final="extension restriction">
+    <xs:sequence>
+      <xs:element name="messages" type="xs:anyType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="response" type="tns:response" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="login">
     <xs:sequence>
       <xs:element name="email" type="xs:string" minOccurs="0"/>
@@ -19,13 +45,6 @@
   <xs:complexType name="loginResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:responseWrapper" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="responseWrapper" final="extension restriction">
-    <xs:sequence>
-      <xs:element name="messages" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="response" type="tns:response" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
