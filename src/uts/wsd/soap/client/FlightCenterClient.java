@@ -13,14 +13,19 @@ public class FlightCenterClient {
 		FlightCenterAPI api = new FlightCenterService().getFlightCenterAPIPort();
 		((BindingProvider) api).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, true);
 
-		print(api.logout());
+		print("Logout", api.logout());
 
-		print(api.login("hello", "world"));
+		print("Login", api.login("hello", "world"));
 
-		print(api.logout());
+		print("Logout", api.logout());
 
-		print(api.logout());
+		print("Logout", api.logout());
 
+	}
+
+	private static void print(String method, ResponseWrapper response) {
+		System.out.println("[" + method +" ]");
+		print(response);
 	}
 
 	private static void print(ResponseWrapper response) {
