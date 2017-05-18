@@ -26,11 +26,6 @@ public class FlightCenterAPI {
 	@Resource
 	private WebServiceContext context;
 
-	@WebMethod(operationName = "hello")
-	public String hello() {
-		return "Hello World";
-	}
-
 	@WebMethod(operationName = "logout")
 	public ResponseWrapper logout() {
 		HttpSession session = session();
