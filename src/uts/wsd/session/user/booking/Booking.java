@@ -13,6 +13,8 @@ public interface Booking {
 
 	void unreserve(User user) throws BookingException;
 
+	String identifier();
+
 	int size();
 
 	int capacity();
