@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <user>
+        <firstName>Max</firstName>
+        <lastName>Caminer</lastName>
+        <email>max.caminer@student.uts.edu.au</email>
+        <password>XMLislife</password>
+        <dob>02/05/1997</dob>
+    </user>
+    <user>
+        <firstName>Harrison</firstName>
+        <lastName>Cole</lastName>
+        <email>harrison.cole@student.uts.edu.au</email>
+        <password>SOAPisenemy</password>
+        <dob>18/08/1997</dob>
+    </user>
+    <user>
+        <firstName>Varun</firstName>
+        <lastName>Vijay</lastName>
+        <email>varun.vijay@student.uts.edu.au</email>
+        <password>Websiteispretty</password>
+        <dob>11/05/1998</dob>
+    </user>
+    <user>
+        <firstName>Ryan</firstName>
+        <lastName>Heise </lastName>
+        <email>ryan@ryanheise.com</email>
+        <password>blahblah </password>
+        <dob>14/03/2006</dob>
+    </user>
+</users>
