@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.uts.edu.au/31284/wsd-diary"
+    xmlns="http://www.uts.edu.au/31284/wsd-diary"
+    elementFormDefault="qualified">
+    <!-- Type Declarations -->
+    <xs:simpleType name="name">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([A-Z][a-z]+ *)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="email">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z_\.]+@[a-z]+(\.[a-z]+)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="dob">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{1,2}/\d{1,2}/\d{1,4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Element Declarations -->
+    <xs:element name="users">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" minOccurs="0" maxOccurs="3">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="firstName" type="name"/>
+                            <xs:element name="lastName" type="name"/>
+                            <xs:element name="email" type="email"/>
+                            <xs:element name="password" type="xs:string"/>
+                            <xs:element name="dob" type="dob"/>
+                            <xs:element name="admin" type="xs:boolean"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

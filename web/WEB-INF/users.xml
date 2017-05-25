@@ -6,6 +6,7 @@
         <email>max.caminer@student.uts.edu.au</email>
         <password>XMLislife</password>
         <dob>02/05/1997</dob>
+        <admin>false</admin>
     </user>
     <user>
         <firstName>Harrison</firstName>
@@ -13,6 +14,7 @@
         <email>harrison.cole@student.uts.edu.au</email>
         <password>SOAPisenemy</password>
         <dob>18/08/1997</dob>
+        <admin>false</admin>
     </user>
     <user>
         <firstName>Varun</firstName>
@@ -20,6 +22,7 @@
         <email>varun.vijay@student.uts.edu.au</email>
         <password>Websiteispretty</password>
         <dob>11/05/1998</dob>
+        <admin>false</admin>
     </user>
     <user>
         <firstName>Ryan</firstName>
@@ -27,5 +30,22 @@
         <email>ryan@ryanheise.com</email>
         <password>blahblah </password>
         <dob>14/03/2006</dob>
+        <admin>false</admin>
+    </user>
+    <user>
+        <firstName>Ronnie</firstName>
+        <lastName>Coleman</lastName>
+        <email>ronnie@ronniecoleman.com</email>
+        <password>lightweightbaby</password>
+        <dob>13/05/1964</dob>
+        <admin>true</admin>
+    </user>
+    <user>
+        <firstName>Gabe</firstName>
+        <lastName>Newell</lastName>
+        <email>gaben@valvesoftware.com</email>
+        <password>pcmasterrace</password>
+        <dob>3/11/1962</dob>
+        <admin>true</admin>
     </user>
 </users>
